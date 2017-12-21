@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import time
 
 index = {"a": 100, "b": 96, "c": 99, "d": 97, "e": 99, "f": 99, "g": 100, "h": 95, "i": 99, "j": 80, "k": 87, "l": 95,
          "m": 97, "n": 92, "o": 94, "p": 98, "q": 76, "r": 95, "s": 99, "t": 95, "u": 84, "v": 96, "w": 93, "x": 81}
@@ -33,6 +34,7 @@ client.post(LOGIN_URL, data=login_information)
 
 for url in urls:
     print "Crawling: "+str(url)
+    time.sleep(1)
     response = client.get(url)
     parse_response = BeautifulSoup(response.content,"lxml")
     parse_class = parse_response.find("ul",{"class":"column quad-column"})
